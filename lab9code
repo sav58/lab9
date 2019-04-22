@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class Lab9 {
+
+	public static void main(String[] args) {							//main method asks user if they want to repeat the program
+		Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard2 = new Scanner(System.in);
+		int userIn = 0;
+		String userAns;
+		boolean repeat = false;
+
+		determineAndDisplay(keyboard, userIn);
+		
+		System.out.println("Enter 'Yes' to repeat: --> ");
+		userAns = keyboard2.nextLine();
+		
+		if(userAns.equalsIgnoreCase("yes")) {
+			repeat = true;
+		}
+		else {
+			repeat = false;
+		}
+		
+		while(repeat == true) {
+			determineAndDisplay(keyboard, userIn);
+			System.out.println("Enter 'Yes' to repeat: --> ");
+			userAns = keyboard2.nextLine();
+			if(userAns.equalsIgnoreCase("yes")) {
+				repeat = true;
+			}
+			else {
+				repeat = false;
+			}
+		}
+
+	}
+
+	public static void determineAndDisplay(Scanner keyboard, int userIn) {			// determine and display asks user for numbers until they enter 
+		int small = Integer.MAX_VALUE;												//-99 , then it tells them their min and max..
+		int large = Integer.MIN_VALUE;
+
+		System.out.println("Enter an integer, or -99 to quit: ---> ");
+		userIn = keyboard.nextInt();
+
+		if (userIn == -99) {
+			System.out.println("You did not enter any numbers!");
+
+		}
+
+		else {
+			while (userIn != -99) {
+				if (userIn >= large) {
+					large = userIn;
+				}
+				if (userIn <= small) {
+					small = userIn;
+				}
+
+				System.out.println("Enter an integer, or -99 to quit: ---> ");
+				userIn = keyboard.nextInt();
+			}
+
+			System.out.println("Smallest integer entered: " + small);
+			System.out.println("Largest integer entered: " + large);
+
+		}
+
+	}
+
+}
